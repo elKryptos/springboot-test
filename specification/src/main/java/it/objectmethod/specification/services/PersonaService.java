@@ -4,11 +4,11 @@ import it.objectmethod.specification.entities.Persona;
 import it.objectmethod.specification.filters.PersonaParams;
 import it.objectmethod.specification.repositories.PersonaRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,8 +16,14 @@ public class PersonaService {
 
     private final PersonaRepository personaRepository;
 
-    public List<Persona> findAll() {
-        return personaRepository.findAll();
+    public List<Persona> fetchPersons(Optional<String> gender) {
+        if (gender.isPresent()) {
+            return personaRepository.findByGender(gender.get());
+        } else if (gender.get().isBlank() || gender.get().isEmpty()) {
+            return personaRepository.findAll();
+        } else {
+            return personaRepository.findAll();
+        }
     }
 
     public Persona findById(Long id) {

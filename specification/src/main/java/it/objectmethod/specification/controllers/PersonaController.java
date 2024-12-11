@@ -21,8 +21,8 @@ public class PersonaController {
     private final PersonaService personaService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Persona>> getAll() {
-        List<Persona> personas = personaService.findAll();
+    public ResponseEntity<List<Persona>> getAll(@RequestParam Optional<String> gender) {
+        List<Persona> personas = personaService.fetchPersons(gender);
         return ResponseEntity.ok(personas);
     }
 

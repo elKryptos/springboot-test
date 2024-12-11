@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long>, JpaSpecificationExecutor<Persona> {
 
@@ -13,4 +15,5 @@ public interface PersonaRepository extends JpaRepository<Persona, Long>, JpaSpec
     Persona findByEmail(String email);
 
 
+    List<Persona> findByGender(String gender);
 }
