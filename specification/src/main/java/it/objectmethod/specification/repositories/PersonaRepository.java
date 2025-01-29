@@ -14,6 +14,8 @@ public interface PersonaRepository extends JpaRepository<Persona, Long>, JpaSpec
 
     Persona findByEmail(String email);
 
+    Persona findByNameAndEmailOrderByIdDesc(String name, String email);
+
 
     List<Persona> findByGender(String gender);
 }
